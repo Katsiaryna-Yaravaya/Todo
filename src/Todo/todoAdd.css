@@ -3,20 +3,21 @@
 }
 
 .todoInput {
-    border: 1px solid #4B0082;
+    border: 1px solid #4b0082;
     border-radius: 10px;
     height: 30px;
     margin-right: 1rem;
     outline: none;
     padding-left: 1rem;
     color: #191970;
-    background: #F0F8FF;
+    background: #f0f8ff;
 }
 
 .todoButton {
-    border: 1px solid #4B0082;
+    border: 1px solid #4b0082;
     border-radius: 10px;
     height: 30px;
-    background: #ADD8E6;
+    background: #add8e6;
     color: #191970;
+    outline: none;
 }
