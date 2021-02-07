@@ -1,8 +1,9 @@
-import React from "react";
+import * as React from "react";
 import TodoItem from "./TodoItem";
 import "./todoList.css";
+import {ITodo} from "../App";
 
-function TodoList(props) {
+function TodoList(props: { todos: ITodo[] }) {
   return (
     <ul className="listUl">
       {props.todos.map((todo) => {
