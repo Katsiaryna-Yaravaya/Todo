@@ -1,7 +1,8 @@
-import * as React from "react";
+import React from "react";
 import TodoList from "./Todo/TodoList";
 import Context from "./context";
 import TodoAdd from "./Todo/TodoAdd";
+
 
 export interface ITodo {
     title: string
@@ -9,7 +10,7 @@ export interface ITodo {
 }
 
 function App() {
-    //деструктуризация массива
+
     const [todos, setTodos] = React.useState<ITodo[]>([]);
 
     function todoAdd(title: string): void {
@@ -25,20 +26,17 @@ function App() {
     }
 
     //удаление
-    function removeTodo(id: number) {
+    function removeTodo(id: number): void {
         setTodos(todos.filter((todo) => todo.id !== id));
     }
 
     return (
         <Context.Provider value={{ removeTodo }}>
             <div className="wrapper">
-                <TodoAdd onCreate={todoAdd}/>
 
-                {todos.length ? (
-                    <TodoList todos={todos}/>
-                ) : (
-                    <p>Данных нет</p>
-                )}
+                <TodoAdd onCreate={todoAdd}/>
+                <TodoList todos={todos}/>
+
             </div>
         </Context.Provider>
     );

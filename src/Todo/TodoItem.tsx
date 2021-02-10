@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Context from "../context";
 import "./todoItem.css";
+
 import {ITodo} from "../App";
 
 function TodoItem(props: { todo: ITodo }) {
