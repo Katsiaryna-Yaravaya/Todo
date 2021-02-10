@@ -1,4 +1,10 @@
+header {
+    height: 3rem;
+}
+
 .todoForm {
+    display: flex;
+    justify-content: space-evenly;
     margin-bottom: 1rem;
 }
 
@@ -6,7 +12,6 @@
     border: 1px solid #4b0082;
     border-radius: 10px;
     height: 30px;
-    margin-right: 1rem;
     outline: none;
     padding-left: 1rem;
     color: #191970;
@@ -20,4 +25,8 @@
     background: #add8e6;
     color: #191970;
     outline: none;
+}
+.todoButton:disabled,
+.todoButton[disabled]{
+    background-color: #cccccc;
 }

@@ -1,7 +1,8 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, {ChangeEvent, FormEvent, useState} from "react";
 import "./todoAdd.css";
 
 function TodoAdd(props: { onCreate: (value: string) => void }) {
+
     const [value, setValue] = useState<string>("");
 
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -14,6 +15,7 @@ function TodoAdd(props: { onCreate: (value: string) => void }) {
 
             // очищает строку
             setValue("");
+            setIsDisabled(true);
         }
     }
 
