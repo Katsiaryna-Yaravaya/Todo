@@ -1,18 +1,26 @@
 .itemLi {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  border: 1px solid #add8e6;
-  margin-bottom: 0.5rem;
-  border-radius: 10px;
-  width: 425px;
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    border: 1px solid #add8e6;
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+    width: 425px;
+}
+
+.itemTitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 250px;
 }
 
 .rm {
-  background: #ff0000;
-  border-radius: 10px;
-  border: none;
-  color: #fff;
-  outline: none;
+    background: #ff0000;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    outline: none;
 }
