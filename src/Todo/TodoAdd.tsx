@@ -12,6 +12,7 @@ function TodoAdd(props: { onCreate: (value: string) => void }) {
 
         if (value.trim()) {
             props.onCreate(value);
+            // event.target[0].value
 
             // очищает строку
             setValue("");

@@ -2,11 +2,12 @@ import React from "react";
 import TodoList from "./Todo/TodoList";
 import Context from "./context";
 import TodoAdd from "./Todo/TodoAdd";
-
+import moment from "moment";
 
 export interface ITodo {
     title: string
     id: number
+    date: string
 }
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         const todo: ITodo = {
             title,
             id: Date.now(),
+            date: moment().format("DD.MM.YYYY HH:mm:ss")
         }
         setTodos(
             todos.concat([
