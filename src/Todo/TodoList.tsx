@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 import "./todoList.css";
-import {ITodo} from "../App";
+import {ITodo} from "./TodoControl";
 import "./todoFilter.css"
 
 function TodoList(props: { todos: ITodo[] }) {
