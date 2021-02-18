@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import Context from "../context";
 import "./todoItem.css";
-import {ITodo} from "../App";
+import {ITodo} from "./TodoControl";
 
 function TodoItem(props: { todo: ITodo }) {
     const {removeTodo} = useContext(Context);
