@@ -22,37 +22,29 @@ function TodoControl() {
             id: Date.now(),
             date: moment().format("DD.MM.YYYY HH:mm:ss")
         }
-        setTodos(
-            todos.concat([
-                todo
-            ])
-        )
+        setFilteredTodos(filteredTodos.concat([todo]))
+        setTodos(todos.concat([todo]))
     }
 
     //удаление
     function removeTodo(id: number): void {
+        setFilteredTodos(filteredTodos.filter((todo) => todo.id !== id));
         setTodos(todos.filter((todo) => todo.id !== id));
     }
 
-    function handleOnChangeFilter(event: ChangeEvent<HTMLInputElement>) {
-        const filterData = todos.filter((todo) => {
-            const date = moment(todo.date, "DD.MM.YYYY HH:mm:ss");
-            const dow = date.second(); //день в месяце (date), здесь секунды
-            if (event.target.value === dow.toString()) {
-                return todo
-            }
-        })
+    function todoFilter(event: ChangeEvent<HTMLInputElement>) {
+        const filterData = todos.filter((todo) => event.target.value === todo.date)
         setFilteredTodos(filterData)
+        // filteredTodos.length > 0 && event.target.value.trim() ? setFilteredTodos(filterData) : todos
+        filteredTodos.length <= 0 && !event.target.value.trim() ? setFilteredTodos(todos) : todos
     }
 
     return (
         <Context.Provider value={{removeTodo}}>
             <div className="wrapper">
-
                 <TodoAdd onCreate={todoAdd}/>
-                <TodoFilter todos={todos} setFilteredData={handleOnChangeFilter}/>
-                <TodoList todos={filteredTodos.length > 0 ? filteredTodos : todos}/>
-
+                <TodoFilter todos={todos} setFilteredData={todoFilter}/>
+                <TodoList todos={filteredTodos}/>
             </div>
         </Context.Provider>
     );

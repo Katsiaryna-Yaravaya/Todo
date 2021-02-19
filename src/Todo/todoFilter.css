@@ -13,16 +13,14 @@
     height: 19px;
 }
 
-.filterButton {
-    height: 23px;
-    border: 1px solid #191970;
-    background: #f0f8ff;
-    border-radius: 6px;
-    color: #191970;
-    outline: none;
+.inputFilter:disabled,
+.inputFilter[disabled]{
+    background-color: #cccccc;
 }
 
-.filterButton:disabled,
-.filterButton[disabled]{
-    background-color: #989898;
+.warningMessage {
+    color: red;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
 }
