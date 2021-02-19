@@ -4,15 +4,12 @@ import "./todoAdd.css";
 function TodoAdd(props: { onCreate: (value: string) => void }) {
 
     const [value, setValue] = useState<string>("");
-
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
 
     function submitHandler(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-
         if (value.trim()) {
-            props.onCreate(value);
-            // event.target[0].value
+            props.onCreate(value);// event.target[0].value
 
             // очищает строку
             setValue("");
@@ -22,7 +19,6 @@ function TodoAdd(props: { onCreate: (value: string) => void }) {
 
     function changeHandler(event: ChangeEvent<HTMLInputElement>) {
         setValue(event.target.value);
-
         if (event.target.value) {
             setIsDisabled(false);
         }
