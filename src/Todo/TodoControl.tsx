@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React, {useMemo} from "react";
 import TodoList from "./TodoList";
 import Context from "../context";
 import TodoAdd from "./TodoAdd";
@@ -22,29 +22,32 @@ function TodoControl() {
             id: Date.now(),
             date: moment().format("DD.MM.YYYY HH:mm:ss")
         }
-        setFilteredTodos(filteredTodos.concat([todo]))
         setTodos(todos.concat([todo]))
     }
 
     //удаление
     function removeTodo(id: number): void {
-        setFilteredTodos(filteredTodos.filter((todo) => todo.id !== id));
         setTodos(todos.filter((todo) => todo.id !== id));
     }
 
-    function todoFilter(event: ChangeEvent<HTMLInputElement>) {
-        const filterData = todos.filter((todo) => event.target.value === todo.date)
-        setFilteredTodos(filterData)
-        // filteredTodos.length > 0 && event.target.value.trim() ? setFilteredTodos(filterData) : todos
-        filteredTodos.length <= 0 && !event.target.value.trim() ? setFilteredTodos(todos) : todos
+    function todoFilter(value: string): void {
+        setFilteredTodos(todos.filter((todo) => value === todo.date))
     }
+
+    const printTodoList = useMemo(() => {
+        let currentTodoList: ITodo[]
+        currentTodoList = filteredTodos.length > 0 ? filteredTodos : todos
+        return (
+            <TodoList todos={currentTodoList}/>
+        )
+    }, [filteredTodos, todos])
 
     return (
         <Context.Provider value={{removeTodo}}>
             <div className="wrapper">
                 <TodoAdd onCreate={todoAdd}/>
                 <TodoFilter todos={todos} setFilteredData={todoFilter}/>
-                <TodoList todos={filteredTodos}/>
+                {printTodoList}
             </div>
         </Context.Provider>
     );
