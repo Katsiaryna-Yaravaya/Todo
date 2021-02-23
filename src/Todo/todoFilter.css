@@ -1,11 +1,12 @@
 .filterForm {
     display: flex;
+    justify-content: center;
 }
 
 .inputFilter {
     border: 1px solid #add8e6;
-    margin: 0 auto;
     outline: none;
+    margin-left: 20px;
     padding-left: 1rem;
     color: #191970;
     background: #f0f8ff;
@@ -23,4 +24,16 @@
     display: flex;
     justify-content: center;
     font-size: 12px;
+}
+
+.filterButton {
+    border: 1px solid #add8e6;
+    margin-left: 4px;
+    outline: none;
+    padding-left: 0.5rem;
+    color: #191970;
+    background: #f0f8ff;
+    border-radius: 6px;
+    height: 23px;
+    font-size: 10px;
 }
