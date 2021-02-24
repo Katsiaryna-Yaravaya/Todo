@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import "./todoFilter.css"
 import {ITodo} from "./TodoControl";
 import InputMask from 'react-input-mask';
@@ -12,23 +12,24 @@ interface Props {
 function TodoFilter({todos, setFilteredData}: Props) {
 
     const [value, setValue] = useState<string>("")
-    const [warningMessage, setWarningMessage] = useState<boolean>(false)
+    const [showWarningMessage, setShowWarningMessage] = useState<boolean>(false)
 
     function changeHandler(event: ChangeEvent<HTMLInputElement>) {
         setValue(event.target.value)
-    }
 
-    function submitHandler(event: FormEvent<HTMLFormElement>): void {
-        event.preventDefault();
-        setFilteredData(value);
-        setWarningMessage(!moment(value, "DD.MM.YYYY HH:mm:ss").isValid())
-        if (value === ""){
-            setWarningMessage(false)
+        if (!event.target.value) {
+            setShowWarningMessage(false)
+            setFilteredData(event.target.value)
+        } else if (moment(event.target.value, "DD.MM.YYYY HH:mm:ss").isValid()) {
+            setShowWarningMessage(false)
+            setFilteredData(event.target.value);
+        } else {
+            setShowWarningMessage(true)
         }
     }
 
     return (
-        <form onSubmit={submitHandler}>
+        <div>
             <div className="filterForm">
                 <InputMask mask="99.99.9999 99:99:99"
                            className="inputFilter"
@@ -38,10 +39,9 @@ function TodoFilter({todos, setFilteredData}: Props) {
                            disabled={todos.length <= 0}
                            placeholder="01.01.2020 23:59:59"
                 />
-                <button className="filterButton" type="submit">Фильтр</button>
             </div>
-            {warningMessage && <span className="warningMessage">Дата не валидна</span>}
-        </form>
+            {showWarningMessage && <span className="warningMessage">Дата не валидна</span>}
+        </div>
     )
 }
 
