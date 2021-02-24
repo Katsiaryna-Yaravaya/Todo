@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import TodoList from "./TodoList";
 import Context from "../context";
 import TodoAdd from "./TodoAdd";
@@ -14,7 +14,7 @@ export interface ITodo {
 function TodoControl() {
 
     const [todos, setTodos] = React.useState<ITodo[]>([]);
-    const [filteredTodos, setFilteredTodos] = React.useState<ITodo[]>([]);
+    const [filterValue, setFilterValue] = React.useState<string>();
 
     function todoAdd(title: string): void {
         const todo: ITodo = {
@@ -31,23 +31,28 @@ function TodoControl() {
     }
 
     function todoFilter(value: string): void {
-        setFilteredTodos(todos.filter((todo) => value === todo.date))
+        setFilterValue(value)
     }
 
-    const printTodoList = useMemo(() => {
-        let currentTodoList: ITodo[]
-        currentTodoList = filteredTodos.length > 0 ? filteredTodos : todos
+    function printTodoList() {
+        let currentTodoList: ITodo[] ;
+
+        if (filterValue && moment(filterValue, "DD.MM.YYYY HH:mm:ss", true).isValid()) {
+            currentTodoList = todos.filter((todo) => filterValue === todo.date);
+        } else {
+            currentTodoList = [...todos];
+        }
         return (
             <TodoList todos={currentTodoList}/>
         )
-    }, [filteredTodos, todos])
+    }
 
     return (
         <Context.Provider value={{removeTodo}}>
             <div className="wrapper">
                 <TodoAdd onCreate={todoAdd}/>
                 <TodoFilter todos={todos} setFilteredData={todoFilter}/>
-                {printTodoList}
+                {printTodoList()}
             </div>
         </Context.Provider>
     );
