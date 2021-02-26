@@ -35,16 +35,7 @@ function TodoControl() {
     }
 
     function printTodoList() {
-        let currentTodoList: ITodo[] ;
-
-        if (filterValue && moment(filterValue, "DD.MM.YYYY HH:mm:ss", true).isValid()) {
-            currentTodoList = todos.filter((todo) => filterValue === todo.date);
-        } else {
-            currentTodoList = [...todos];
-        }
-        return (
-            <TodoList todos={currentTodoList}/>
-        )
+        return filterValue ? todos.filter((todo) => filterValue === todo.date): todos;
     }
 
     return (
@@ -52,7 +43,8 @@ function TodoControl() {
             <div className="wrapper">
                 <TodoAdd onCreate={todoAdd}/>
                 <TodoFilter todos={todos} setFilteredData={todoFilter}/>
-                {printTodoList()}
+                <TodoList todos={printTodoList()}/>
+
             </div>
         </Context.Provider>
     );
