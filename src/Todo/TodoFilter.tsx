@@ -20,7 +20,7 @@ function TodoFilter({todos, setFilteredData}: Props) {
         if (!event.target.value) {
             setShowWarningMessage(false)
             setFilteredData(event.target.value)
-        } else if (moment(event.target.value, "DD.MM.YYYY HH:mm:ss").isValid()) {
+        } else if (moment(event.target.value, "DD.MM.YYYY HH:mm:ss", true).isValid()) {
             setShowWarningMessage(false)
             setFilteredData(event.target.value);
         } else {
